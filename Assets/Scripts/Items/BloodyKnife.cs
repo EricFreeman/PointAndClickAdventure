@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Messages;
 using UnityEngine;
 using UnityEventAggregator;

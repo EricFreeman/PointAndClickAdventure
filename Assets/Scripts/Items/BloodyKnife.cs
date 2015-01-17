@@ -19,6 +19,11 @@ namespace Assets.Scripts.Items
             get { return "Living Room"; }
         }
 
+        public Sprite Sprite
+        {
+            get { return Resources.Load<Sprite>("gfx/Bloody Knife"); }
+        }
+
         public void Interact()
         {
             IsInInventory = true;

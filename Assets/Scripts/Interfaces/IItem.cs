@@ -8,6 +8,8 @@ namespace Assets.Scripts.Interfaces
         Vector3 Position { get; }
         string Room { get; }
 
+        Sprite Sprite { get; }
+
         void Interact();
         void Inspect();
         void Remove();

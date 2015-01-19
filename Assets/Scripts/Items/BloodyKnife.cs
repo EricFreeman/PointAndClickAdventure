@@ -24,6 +24,8 @@ namespace Assets.Scripts.Items
             get { return Resources.Load<Sprite>("gfx/Bloody Knife"); }
         }
 
+        public string ItemScript { get { return "BloodyKnife"; } }
+
         public void Interact()
         {
             IsInInventory = true;

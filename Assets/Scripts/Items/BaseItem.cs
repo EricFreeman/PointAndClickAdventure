@@ -8,11 +8,10 @@ namespace Assets.Scripts.Items
     {
         public IItem Item;
 
-        public string ItemScript;
-
-        public void Setup()
+        public void Setup(IItem obj)
         {
-            var t = Type.GetType("Assets.Scripts.Items." + ItemScript); 
+            Item = obj;
+            var t = Type.GetType("Assets.Scripts.Items." + Item.ItemScript);
             Item = Activator.CreateInstance(t) as IItem;
         }
     }

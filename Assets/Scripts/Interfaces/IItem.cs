@@ -9,6 +9,7 @@ namespace Assets.Scripts.Interfaces
         string Room { get; }
 
         Sprite Sprite { get; }
+        string ItemScript { get; }
 
         void Interact();
         void Inspect();

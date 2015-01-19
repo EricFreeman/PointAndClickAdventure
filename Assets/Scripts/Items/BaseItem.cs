@@ -6,14 +6,14 @@ namespace Assets.Scripts.Items
 {
     public class BaseItem : MonoBehaviour
     {
-        private IItem _interface;
+        public IItem Item;
 
         public string ItemScript;
 
-        void Start()
+        public void Setup()
         {
             var t = Type.GetType("Assets.Scripts.Items." + ItemScript); 
-            _interface = Activator.CreateInstance(t) as IItem;
+            Item = Activator.CreateInstance(t) as IItem;
         }
     }
 }

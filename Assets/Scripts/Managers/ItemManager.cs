@@ -29,11 +29,12 @@ namespace Assets.Scripts.Managers
             {
                 var obj = (IItem)Activator.CreateInstance(item);
                 var gameObject = ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
-                gameObject.GetComponent<BaseItem>()
-//                if (!_roomItems.ContainsKey(item.Room))
-//                    _roomItems.Add(item.Room, new List<IItem>());
-//
-//                _roomItems[item.Room].Add(item);
+                gameObject.Setup();
+
+                if (!_roomItems.ContainsKey(gameObject.Item.Room))
+                    _roomItems.Add(gameObject.Item.Room, new List<IItem>());
+
+                _roomItems[gameObject.Item.Room].Add(gameObject.Item);
             }
 
             Debug.Log(_roomItems.Count);

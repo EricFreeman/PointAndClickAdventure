@@ -21,27 +21,26 @@ namespace Assets.Scripts.Managers
         {
             _roomItems = new Dictionary<string, List<IItem>>();
 
-            var itemList = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(type => type.GetInterface("IItem") != null && !type.IsInterface);
-
-            foreach (var item in itemList)
-            {
-                var obj = (IItem)Activator.CreateInstance(item);
-                var baseItem = ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
-                baseItem.Setup(obj);
-
-                if (!_roomItems.ContainsKey(baseItem.Item.Room))
-                    _roomItems.Add(baseItem.Item.Room, new List<IItem>());
-
-                _roomItems[baseItem.Item.Room].Add(baseItem.Item);
-            }
-
-            Debug.Log(_roomItems.Count);
+            Assembly.GetExecutingAssembly().GetTypes()
+                .Where(type => type.GetInterface("IItem") != null && !type.IsInterface)
+                .Each(item =>
+                {
+                    var obj = (IItem) Activator.CreateInstance(item);
+                    
+                    if (!_roomItems.ContainsKey(obj.Room))
+                        _roomItems.Add(obj.Room, new List<IItem>());
+                    
+                    _roomItems[obj.Room].Add(obj);
+                });
         }
 
         public void Handle(EnterRoomMessage message)
         {
-            
+            _roomItems[message.RoomName].Each(item =>
+            {
+                var baseItem =  ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
+                baseItem.Setup(item);
+            });
         }
     }
 }

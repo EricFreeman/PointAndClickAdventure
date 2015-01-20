@@ -11,7 +11,7 @@ using UnityEventAggregator;
 namespace Assets.Scripts.Managers
 {
     public class ItemManager : MonoBehaviour,
-        IListener<EnterRoomMessage>
+        IListener<ChangeRoomMessage>
     {
         public GameObject BaseItem;
 
@@ -32,10 +32,19 @@ namespace Assets.Scripts.Managers
                     
                     _roomItems[obj.Room].Add(obj);
                 });
+
+            this.Register<ChangeRoomMessage>();
         }
 
-        public void Handle(EnterRoomMessage message)
+        void OnDestroy()
         {
+            this.UnRegister<ChangeRoomMessage>();
+        }
+
+        public void Handle(ChangeRoomMessage message)
+        {
+            if (!_roomItems.ContainsKey(message.RoomName)) return;
+
             _roomItems[message.RoomName].Each(item =>
             {
                 var baseItem =  ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();

@@ -10,7 +10,7 @@ namespace Assets.Scripts
         public void Go(string roomName)
         {
             var scene = GameObject.Find("Scene");
-            var newRoom = (GameObject)(Instantiate(Resources.Load("prefabs/rooms/{0}".ToFormat(roomName))));
+            var newRoom = (GameObject)(Instantiate(Resources.Load("Prefabs/Rooms/{0}".ToFormat(roomName))));
 
             foreach (var t in scene.GetComponentsInChildren<Transform>())
                 if(t.gameObject.GetInstanceID() != scene.GetInstanceID())
@@ -18,7 +18,7 @@ namespace Assets.Scripts
 
             newRoom.transform.SetParent(scene.transform, false);
 
-            EventAggregator.SendMessage(new EnterRoomMessage { RoomName = roomName });
+            EventAggregator.SendMessage(new ChangeRoomMessage { RoomName = roomName });
         }
     }
 }

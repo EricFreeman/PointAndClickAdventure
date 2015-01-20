@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Messages
 {
-    public struct EnterRoomMessage
+    public class ChangeRoomMessage
     {
         public string RoomName;
     }

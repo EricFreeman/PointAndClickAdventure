@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Messages
 {
-    public struct DisplayMessageEvent
+    public class DisplayMessageEvent
     {
         public string Message;
         public Vector3 Location;

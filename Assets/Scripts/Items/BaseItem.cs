@@ -13,6 +13,8 @@ namespace Assets.Scripts.Items
             Item = obj;
             var t = Type.GetType("Assets.Scripts.Items." + Item.ItemScript);
             Item = Activator.CreateInstance(t) as IItem;
+
+            GetComponent<SpriteRenderer>().sprite = Item.Sprite;
         }
     }
 }

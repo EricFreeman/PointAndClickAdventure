@@ -47,7 +47,7 @@ namespace Assets.Scripts.Managers
 
             _roomItems[message.RoomName].Each(item =>
             {
-                var baseItem =  ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
+                var baseItem = ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
                 baseItem.Setup(item);
             });
         }

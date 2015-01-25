@@ -6,6 +6,7 @@ namespace Assets.Scripts.Interfaces
     {
         bool IsInInventory { get; set; }
         Vector3 Position { get; }
+        int OrderLayer { get; }
         string Room { get; }
 
         Sprite Sprite { get; }

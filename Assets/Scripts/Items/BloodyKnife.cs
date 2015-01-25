@@ -11,8 +11,10 @@ namespace Assets.Scripts.Items
 
         public Vector3 Position
         {
-            get { return new Vector3(3, 3, 0); }
+            get { return new Vector3(0.82608f, -1.9465f, 0); }
         }
+
+        public int OrderLayer { get { return 1; } }
 
         public string Room
         {
@@ -23,7 +25,6 @@ namespace Assets.Scripts.Items
         {
             get { return Resources.Load<Sprite>("gfx/Bloody Knife"); }
         }
-
         public string ItemScript { get { return "BloodyKnife"; } }
 
         public void Interact()

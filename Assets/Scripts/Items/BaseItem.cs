@@ -15,6 +15,8 @@ namespace Assets.Scripts.Items
             Item = Activator.CreateInstance(t) as IItem;
 
             GetComponent<SpriteRenderer>().sprite = Item.Sprite;
+            transform.position = Item.Position;
+            GetComponent<SpriteRenderer>().sortingOrder = Item.OrderLayer;
         }
     }
 }

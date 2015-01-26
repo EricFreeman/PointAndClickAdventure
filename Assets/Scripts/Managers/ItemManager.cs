@@ -43,12 +43,23 @@ namespace Assets.Scripts.Managers
 
         public void Handle(ChangeRoomMessage message)
         {
+            // clear existing items from old room
+            var itemParent = GameObject.Find("Items");
+            itemParent.GetComponentsInChildren<Transform>().Each(x =>
+            {
+                if (x != itemParent.transform)
+                    Destroy(x.gameObject);
+            });
+
+            // add items from entered room
+
             if (!_roomItems.ContainsKey(message.RoomName)) return;
 
             _roomItems[message.RoomName].Each(item =>
             {
                 var baseItem = ((GameObject)Instantiate(BaseItem)).GetComponent<BaseItem>();
                 baseItem.Setup(item);
+                baseItem.transform.SetParent(itemParent.transform);
             });
         }
     }

@@ -11,7 +11,7 @@ using UnityEventAggregator;
 namespace Assets.Scripts.Managers
 {
     public class ItemManager : MonoBehaviour,
-        IListener<ChangeRoomMessage>
+        IListener<EnterRoomMessage>
     {
         public GameObject BaseItem;
 
@@ -33,15 +33,15 @@ namespace Assets.Scripts.Managers
                     _roomItems[obj.Room].Add(obj);
                 });
 
-            this.Register<ChangeRoomMessage>();
+            this.Register<EnterRoomMessage>();
         }
 
         void OnDestroy()
         {
-            this.UnRegister<ChangeRoomMessage>();
+            this.UnRegister<EnterRoomMessage>();
         }
 
-        public void Handle(ChangeRoomMessage message)
+        public void Handle(EnterRoomMessage message)
         {
             // clear existing items from old room
             var itemParent = GameObject.Find("Items");

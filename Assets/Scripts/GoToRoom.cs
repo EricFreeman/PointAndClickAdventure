@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Messages;
-using Assets.Scripts.Util;
+﻿using Assets.Scripts.Util;
 using UnityEngine;
-using UnityEventAggregator;
 
 namespace Assets.Scripts
 {
@@ -19,8 +17,6 @@ namespace Assets.Scripts
                     Destroy(t.gameObject);
 
             newRoom.transform.SetParent(scene.transform, false);
-
-            EventAggregator.SendMessage(new ChangeRoomMessage { RoomName = RoomName });
         }
     }
 }

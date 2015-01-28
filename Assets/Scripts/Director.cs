@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interfaces;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -13,9 +14,8 @@ namespace Assets.Scripts
 
                 if (hitCollider)
                 {
-                    var t = hitCollider.GetComponent<GoToRoom>();
-                    if (t != null)
-                        t.Go();
+                    var t = (IClickable)hitCollider.GetComponent(typeof(IClickable));
+                    t.Click();
                 }
             }
         }

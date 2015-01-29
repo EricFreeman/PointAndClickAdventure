@@ -7,7 +7,7 @@ namespace Assets.Scripts
     {
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {
                  var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                  var hitCollider = Physics2D.OverlapPoint(mousePosition);
@@ -15,7 +15,8 @@ namespace Assets.Scripts
                 if (hitCollider)
                 {
                     var t = (IClickable)hitCollider.GetComponent(typeof(IClickable));
-                    t.Click();
+                    if(t != null)
+                        t.Click();
                 }
             }
         }

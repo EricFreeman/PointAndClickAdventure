@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
-    public class BaseItem : MonoBehaviour
+    public class BaseItem : MonoBehaviour, IClickable
     {
         public IItem Item;
 
@@ -17,6 +17,14 @@ namespace Assets.Scripts.Items
             GetComponent<SpriteRenderer>().sprite = Item.Sprite;
             transform.position = Item.Position;
             GetComponent<SpriteRenderer>().sortingOrder = Item.OrderLayer;
+        }
+
+        public void Click()
+        {
+            if (Input.GetMouseButtonDown(0))
+                Item.Interact();
+            else if (Input.GetMouseButtonDown(1))
+                Item.Inspect();
         }
     }
 }

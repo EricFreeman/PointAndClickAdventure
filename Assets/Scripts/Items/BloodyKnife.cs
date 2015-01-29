@@ -29,16 +29,19 @@ namespace Assets.Scripts.Items
 
         public void Interact()
         {
+            Debug.Log("Clicked");
             IsInInventory = true;
         }
 
         public void Inspect()
         {
-            EventAggregator.SendMessage(new DisplayMessageEvent
-            {
-                Message = "A bloody knife lying in the middle of the room.",
-                Location = Position
-            });
+            Debug.Log("Inspected");
+            // TODO: Fix bug in event aggregator where it throws error when nothing listens for event
+//            EventAggregator.SendMessage(new DisplayMessageEvent
+//            {
+//                Message = "A bloody knife lying in the middle of the room.",
+//                Location = Position
+//            });
         }
 
         public void Remove()

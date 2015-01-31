@@ -1,12 +1,24 @@
 ﻿using System;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Messages;
 using UnityEngine;
+using UnityEventAggregator;
 
 namespace Assets.Scripts.Items
 {
-    public class BaseItem : MonoBehaviour, IClickable
+    public class BaseItem : MonoBehaviour, IClickable, IListener<TakeItemMessage>
     {
         public IItem Item;
+
+        void Start()
+        {
+            this.Register<TakeItemMessage>();
+        }
+
+        void OnDestroy()
+        {
+            this.UnRegister<TakeItemMessage>();
+        }
 
         public void Setup(IItem obj)
         {
@@ -25,6 +37,11 @@ namespace Assets.Scripts.Items
                 Item.Interact();
             else if (Input.GetMouseButtonDown(1))
                 Item.Inspect();
+        }
+
+        public void Handle(TakeItemMessage message)
+        {
+            if(Item == message.Item) Destroy(gameObject);
         }
     }
 }

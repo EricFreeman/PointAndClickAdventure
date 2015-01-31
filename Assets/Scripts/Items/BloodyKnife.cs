@@ -29,8 +29,11 @@ namespace Assets.Scripts.Items
 
         public void Interact()
         {
-            Debug.Log("Clicked");
             IsInInventory = true;
+            EventAggregator.SendMessage(new TakeItemMessage
+            {
+                Item = this
+            });
         }
 
         public void Inspect()
